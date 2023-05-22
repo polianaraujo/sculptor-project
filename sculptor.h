@@ -1,5 +1,10 @@
-#ifndef VOXEL.H
-#define VOXEL.H
+#include <fstream> 
+#include "voxel.h"
+
+//#ifndef VOXEL.H
+#ifndef SCULPTOR.H
+//#define VOXEL.H
+#define SCULPTOR.H
 
 class Sculptor {
 private:
@@ -52,7 +57,7 @@ public:
   void cutEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int ry, int rz);
   /* Desativa todos os voxels que satisfazem à equação do elipsóide */
   
-  void writeOFF(const char* filename);
+  void writeOFF(const char* y_mike_off);
   /* Grava a escultura no formato OFF no arquivo 'filename' */
 };
 
