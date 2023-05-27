@@ -20,7 +20,7 @@ Sculptor::Sculptor(int _nx, int _ny, int _nz)
         
         for (int j=0; j<ny; j++)
         {
-            v[i][j]= new Voxel[nz];
+            v[i][j] = new Voxel[nz];
         }
     }
 }
@@ -110,9 +110,6 @@ void Sculptor::writeOFF(const char* filename)
     //quantos voxels?
     int qts_voxels=0;
     
-    //c (comprimento x)
-    //a (altura y)
-    //l (largura z)
     for (int i=0; i=nx; i++)
     {
         for(int j=0; j<=ny; j++)
@@ -137,8 +134,10 @@ void Sculptor::writeOFF(const char* filename)
         exit(1);
     }
     //if(fout.is_open()){
-        // crimeira linha, tico do arquivo, "OFF"
+        
+        // primeira linha, tipo do arquivo:
         fout << "OFF" << std::endl;
+        
         // segunda linha contém:
         fout << qts_voxels*8 << " "; //número de vértices (qts_voxels*8)
         fout << qts_voxels*6 << " "; //número de faces (qts_voxels*6)
@@ -147,9 +146,6 @@ void Sculptor::writeOFF(const char* filename)
         
         // COORDENADAS DOS VÉRTICES
 
-        //c (comcrimento x)
-        //a (altura y)
-        //l (largura z)
         for (int i=0; i<nx; i++)
         {
             for (int j=0; j<ny; j++)
@@ -173,13 +169,8 @@ void Sculptor::writeOFF(const char* filename)
     
     
         //DEFININDO AS FACES
-        // Face 1: c0 c3 c2 c1
-        // Face 2: c4 c5 c6 c7
-        // Face 3: c0 c1 c5 c4
-        // Face 4: c0 c4 c7 c3
-        // Face 5: c7 c6 c2 c3
-        // Face 6: c1 c2 c6 c5
-
+    
+        // Quantas faces?
         int qts_faces = 0;
         for (int i=0; i<nx; i++)
         {
@@ -190,12 +181,12 @@ void Sculptor::writeOFF(const char* filename)
                     if (v[i][j][k].show)
                     {
 
-                        fout << 4 << " " << 0 + qts_faces << " " << 3 + qts_faces << " " << 2 + qts_faces << " " << 1 + qts_faces << " " << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][k][j].b << " " << v[i][j][k].a << std::endl;
-                        fout << 4 << " " << 4 + qts_faces << " " << 5 + qts_faces << " " << 6 + qts_faces << " " << 7 + qts_faces << " " << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][k][j].b << " " << v[i][j][k].a << std::endl;
-                        fout << 4 << " " << 0 + qts_faces << " " << 1 + qts_faces << " " << 5 + qts_faces << " " << 4 + qts_faces << " " << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][k][j].b << " " << v[i][j][k].a << std::endl;
-                        fout << 4 << " " << 0 + qts_faces << " " << 4 + qts_faces << " " << 7 + qts_faces << " " << 3 + qts_faces << " " << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][k][j].b << " " << v[i][j][k].a << std::endl;
-                        fout << 4 << " " << 3 + qts_faces << " " << 7 + qts_faces << " " << 6 + qts_faces << " " << 2 + qts_faces << " " << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][k][j].b << " " << v[i][j][k].a << std::endl;
-                        fout << 4 << " " << 1 + qts_faces << " " << 2 + qts_faces << " " << 6 + qts_faces << " " << 5 + qts_faces << " " << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][k][j].b << " " << v[i][j][k].a << std::endl;
+                        fout << 4 << " " << 0 + qts_faces << " " << 3 + qts_faces << " " << 2 + qts_faces << " " << 1 + qts_faces << " " << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][j][k].b << " " << v[i][j][k].a << std::endl;
+                        fout << 4 << " " << 4 + qts_faces << " " << 5 + qts_faces << " " << 6 + qts_faces << " " << 7 + qts_faces << " " << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][j][k].b << " " << v[i][j][k].a << std::endl;
+                        fout << 4 << " " << 0 + qts_faces << " " << 1 + qts_faces << " " << 5 + qts_faces << " " << 4 + qts_faces << " " << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][j][k].b << " " << v[i][j][k].a << std::endl;
+                        fout << 4 << " " << 0 + qts_faces << " " << 4 + qts_faces << " " << 7 + qts_faces << " " << 3 + qts_faces << " " << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][j][k].b << " " << v[i][j][k].a << std::endl;
+                        fout << 4 << " " << 3 + qts_faces << " " << 7 + qts_faces << " " << 6 + qts_faces << " " << 2 + qts_faces << " " << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][j][k].b << " " << v[i][j][k].a << std::endl;
+                        fout << 4 << " " << 1 + qts_faces << " " << 2 + qts_faces << " " << 6 + qts_faces << " " << 5 + qts_faces << " " << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][j][k].b << " " << v[i][j][k].a << std::endl;
 
                         qts_faces = qts_faces + 8;
                     }
