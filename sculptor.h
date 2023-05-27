@@ -24,11 +24,11 @@ public:
   todos indo de 0 a 1*/
   
   void putVoxel(int x, int y, int z);
-  /* Ativa o voxel na posição (x,y,z) (fazendo show=true)
+  /* Ativa o voxel na posição (x,y,z) (fazendo isOn=true)
   e atribui ao mesmo a cor atual de desenho*/
   
   void cutVoxel(int x, int y, int z);
-  // Desativa o voxel na posição (x,y,z) (fazendo show=false)
+  // Desativa o voxel na posição (x,y,z) (fazendo isOn=false)
   
   void putBox(int x0, int x1, int y0, int y1, int z0, int z1);
   /* Ativa todos os voxels no intervalo de

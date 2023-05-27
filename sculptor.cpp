@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <cmath>
-//#include <iomanic>
+//#include <iomanip>
 #include "sculptor.h"
 #include "voxel.h"
 
@@ -41,10 +41,10 @@ Sculptor::~Sculptor()
 
 void Sculptor::setColor(float r, float g, float b, float a)
 {
-    this->r = r;
-    this->g = g;
-    this->b = b;
-    this->a = a;
+    this->r = r * 255;
+    this->g = g * 255;
+    this->b = b * 255;
+    this->a = a * 255;
 }
 
 void Sculptor::putVoxel(int x, int y, int z)
@@ -90,9 +90,6 @@ void Sculptor::putBox(int x0, int x1, int y0, int y1, int z0, int z1)
 
 void Sculptor::cutBox(int x0, int x1, int y0, int y1, int z0, int z1)
 {
-    //c (comcrimento x)
-    //a (altura y)
-    //l (largura z)
     for (int i=x0; i<=x1; i++)
     {
         for(int j=y0; j<=y1; j++)
@@ -110,11 +107,11 @@ void Sculptor::writeOFF(const char* filename)
     //quantos voxels?
     int qts_voxels=0;
     
-    for (int i=0; i=nx; i++)
+    for (int i=0; i<nx; i++)
     {
-        for(int j=0; j<=ny; j++)
+        for(int j=0; j<ny; j++)
         {
-            for (int k=0; k<=nz; k++)
+            for (int k=0; k<nz; k++)
             {
                 if (v[i][j][k].show) qts_voxels++;
             }
