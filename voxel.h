@@ -1,10 +1,10 @@
-#ifndef VOXEL.H
-#define VOXEL.H
+#ifndef VOXEL_H
+#define VOXEL_H
 
 struct Voxel {
     float r,g,b; //cores
     float a; //transparência
     bool show; //se vai ser mostrado ou não
-}
+};
 
-#endif
+#endif // VOXEL_H

@@ -1,16 +1,14 @@
 #include <fstream> 
 #include "voxel.h"
 
-//#ifndef VOXEL.H
-#ifndef SCULPTOR.H
-//#define VOXEL.H
-#define SCULPTOR.H
+#ifndef SCULPTOR_H
+#define SCULPTOR_H
 
 class Sculptor {
 private:
   Voxel ***v; // matriz 3D
-  int nx,ny,nz; // dimensões
-  float r,g,b,a; // cor do desenho
+  int nx, ny, nz; // dimensões
+  float r, g, b, a; // cor do desenho
   std::ofstream fout;
 
 public:
@@ -21,7 +19,9 @@ public:
   // Destrutor da classe
   
   void setColor(float r, float g, float b, float a);
-  // Define a cor atual do desenho
+  /* Define a cor atual do desenho 
+  r (vermelho), g (verde), b(azul), a (transparência)
+  todos indo de 0 a 1*/
   
   void putVoxel(int x, int y, int z);
   /* Ativa o voxel na posição (x,y,z) (fazendo show=true)
@@ -44,20 +44,22 @@ public:
   z pertencente [z0,z1]
   */
   
+  /*
   void putSphere(int xcenter, int ycenter, int zcenter, int radius);
   /* Ativa todos os voxel que satisfazem à equação da esfera
-  e atribui aos mesmos a cor atual de desenho (r,g,b,a) */
+  e atribui aos mesmos a cor atual de desenho (r,g,b,a) *
   
   void cutSphere(int xcenter, int ycenter, int zcenter, int radius);
-  /* Desativa todos os voxels que satisfazem à equação da esfera */
+  /* Desativa todos os voxels que satisfazem à equação da esfera *
   
   void putEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int ry, int rz);
   /* Ativa todos os voxels que satisfazem à equação do elipsóide
-  e atribui aos mesmos a cor atual de desenho */
+  e atribui aos mesmos a cor atual de desenho *
   
   void cutEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int ry, int rz);
-  /* Desativa todos os voxels que satisfazem à equação do elipsóide */
-  
+  /* Desativa todos os voxels que satisfazem à equação do elipsóide *
+  */
+
   void writeOFF(const char* filename);
   /* Grava a escultura no formato OFF no arquivo 'filename' */
 };
