@@ -41,10 +41,10 @@ Sculptor::~Sculptor()
 
 void Sculptor::setColor(float r, float g, float b, float a)
 {
-    r = r;
-    g = g;
-    b = b;
-    a = a;
+    this->r = r;
+    this->g = g;
+    this->b = b;
+    this->a = a;
 }
 
 void Sculptor::putVoxel(int x, int y, int z)
@@ -76,16 +76,13 @@ void Sculptor::cutVoxel(int x, int y, int z)
 
 void Sculptor::putBox(int x0, int x1, int y0, int y1, int z0, int z1)
 {
-    //c (comcrimento x)
-    //a (altura y)
-    //l (largura z)
-    for (int l=z0; l<=z1; l++)
+    for (int i=x0; i<=x1; i++)
     {
-        for(int c=x0; c<=x1; c++)
+        for(int j=y0; j<=y1; j++)
         {
-            for (int a=y0; a<=y1; a++)
+            for (int k=z0; k<=z1; k++)
             {
-                cutVoxel(c,a,l);
+                putVoxel(i,j,k);
             }
         }
     }
@@ -96,54 +93,56 @@ void Sculptor::cutBox(int x0, int x1, int y0, int y1, int z0, int z1)
     //c (comcrimento x)
     //a (altura y)
     //l (largura z)
-    for (int l=z0; l<=z1; l++)
+    for (int i=x0; i<=x1; i++)
     {
-        for(int c=x0; c<=x1; c++)
+        for(int j=y0; j<=y1; j++)
         {
-            for (int a=y0; a<=y1; a++)
+            for (int k=z0; k<=z1; k++)
             {
-                cutVoxel(c,a,l);
+                cutVoxel(i,j,k);
             }
         }
     }
 }
 
-void Sculptor::writeOFF(cost char* filename)
+void Sculptor::writeOFF(const char* filename)
 {
     //quantos voxels?
     int qts_voxels=0;
     
-    //c (comcrimento x)
+    //c (comprimento x)
     //a (altura y)
     //l (largura z)
-    for (int l=z0; l<=z1; l++)
+    for (int i=0; i=nx; i++)
     {
-        for(int c=x0; c<=x1; c++)
+        for(int j=0; j<=ny; j++)
         {
-            for (int a=y0; a<=y1; a++)
+            for (int k=0; k<=nz; k++)
             {
-                if (v[c][a][l].show) qts_voxels++;
+                if (v[i][j][k].show) qts_voxels++;
             }
         }
     }
 
-    std::cout << "Quantidade de voxels da escultura = " << qts_voxels << std::endl;
+    //std::cout << "Quantidade de voxels da escultura = " << qts_voxels << std::endl;
 
-    std::ofstream offout;
+    std::ofstream fout;
 
-    offout.ocen(filename, std::ios::out);
+    fout.open(filename);
 
     //CRIANDO ARQUIVO OFF
-    if(fout.is_ocen())
-    {
-        // crimeira linha, tico do arquivo, "OFF"
-        offout << "OFF" << std::endl;
-        // segunda linha contém:
-        offout << qts_voxels*8 << " "; //número de vértices (qts_voxels*8)
-        offout << qts_voxels*6 << " "; //número de faces (qts_voxels*6)
-        offout << 0 << std::endl;      //número de arestas (não é necessário)
 
-        offout << qts_voxels*8 << " " << qts_voxels*6 << " " << 0 << std::endl;
+    if(!fout.is_open()){
+        std::cout << "Erro ao abrir o arquivo\n";
+        exit(1);
+    }
+    //if(fout.is_open()){
+        // crimeira linha, tico do arquivo, "OFF"
+        fout << "OFF" << std::endl;
+        // segunda linha contém:
+        fout << qts_voxels*8 << " "; //número de vértices (qts_voxels*8)
+        fout << qts_voxels*6 << " "; //número de faces (qts_voxels*6)
+        fout << 0 << std::endl;      //número de arestas (não é necessário)
 
         
         // COORDENADAS DOS VÉRTICES
@@ -151,22 +150,22 @@ void Sculptor::writeOFF(cost char* filename)
         //c (comcrimento x)
         //a (altura y)
         //l (largura z)
-        for (int l=0; l<nz; l++)
+        for (int i=0; i<nx; i++)
         {
-            for (int c=0; c<nx; c++)
+            for (int j=0; j<ny; j++)
             {
-                for (int a=0; a<ny; a++)
+                for (int k=0; k<nz; k++)
                 {
-                    if (v[c][a][l].show = true)
+                    if (v[i][j][k].show = true)
                     {
-                        offout << -0.5 + c << " " << 0.5 + a << " " << -0.5 + l << std::endl;
-                        offout << -0.5 + c << " " << -0.5 + a << " " << -0.5 + l << std::endl;
-                        offout << 0.5 + c << " " << -0.5 + a << " " << -0.5 + l << std::endl;
-                        offout << 0.5 + c << " " << 0.5 + a << " " << -0.5 + l << std::endl;
-                        offout << -0.5 + c << " " << 0.5 + a << " " << 0.5 + l << std::endl;
-                        offout << -0.5 + c << " " << -0.5 + a << " " << 0.5 + l << std::endl;
-                        offout << 0.5 + c << " " << -0.5 + a << " " << 0.5 + l << std::endl;
-                        offout << 0.5 + c << " " << 0.5 + a << " " << 0.5 + l << std::endl;
+                        fout << -0.5 + i << " " << 0.5 + j << " " << -0.5 + k << std::endl;
+                        fout << -0.5 + i << " " << -0.5 + j << " " << -0.5 + k << std::endl;
+                        fout << 0.5 + i << " " << -0.5 + j << " " << -0.5 + k << std::endl;
+                        fout << 0.5 + i << " " << 0.5 + j << " " << -0.5 + k << std::endl;
+                        fout << -0.5 + i << " " << 0.5 + j << " " << 0.5 + k << std::endl;
+                        fout << -0.5 + i << " " << -0.5 + j << " " << 0.5 + k << std::endl;
+                        fout << 0.5 + i << " " << -0.5 + j << " " << 0.5 + k << std::endl;
+                        fout << 0.5 + i << " " << 0.5 + j << " " << 0.5 + k << std::endl;
                     }
                 }
             }
@@ -182,21 +181,21 @@ void Sculptor::writeOFF(cost char* filename)
         // Face 6: c1 c2 c6 c5
 
         int qts_faces = 0;
-        for (int l=0; l<nz; l++)
+        for (int i=0; i<nx; i++)
         {
-            for (int c=0; c<nx; c++)
+            for (int j=0; j<ny; j++)
             {
-                for (int a=0; a<ny; a++)
+                for (int k=0; k<nz; k++)
                 {
-                    if (v[c][a][l].show)
+                    if (v[i][j][k].show)
                     {
 
-                        offout << 4 << " " << 0 + qts_faces << " " << 3 + qts_faces << " " << 2 + qts_faces << " " << 1 + qts_faces << " " << v[c][a][l].r << " " << v[c][a][l].g << " " << v[c][a][l].b << " " << v[c][a][l].a << std::endl;
-                        offout << 4 << " " << 4 + qts_faces << " " << 5 + qts_faces << " " << 6 + qts_faces << " " << 7 + qts_faces << " " << v[c][a][l].r << " " << v[c][a][l].g << " " << v[c][a][l].b << " " << v[c][a][l].a << std::endl;
-                        offout << 4 << " " << 0 + qts_faces << " " << 1 + qts_faces << " " << 5 + qts_faces << " " << 4 + qts_faces << " " << v[c][a][l].r << " " << v[c][a][l].g << " " << v[c][a][l].b << " " << v[c][a][l].a << std::endl;
-                        offout << 4 << " " << 0 + qts_faces << " " << 4 + qts_faces << " " << 7 + qts_faces << " " << 3 + qts_faces << " " << v[c][a][l].r << " " << v[c][a][l].g << " " << v[c][a][l].b << " " << v[c][a][l].a << std::endl;
-                        offout << 4 << " " << 3 + qts_faces << " " << 7 + qts_faces << " " << 6 + qts_faces << " " << 2 + qts_faces << " " << v[c][a][l].r << " " << v[c][a][l].g << " " << v[c][a][l].b << " " << v[c][a][l].a << std::endl;
-                        offout << 4 << " " << 1 + qts_faces << " " << 2 + qts_faces << " " << 6 + qts_faces << " " << 5 + qts_faces << " " << v[c][a][l].r << " " << v[c][a][l].g << " " << v[c][a][l].b << " " << v[c][a][l].a << std::endl;
+                        fout << 4 << " " << 0 + qts_faces << " " << 3 + qts_faces << " " << 2 + qts_faces << " " << 1 + qts_faces << " " << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][k][j].b << " " << v[i][j][k].a << std::endl;
+                        fout << 4 << " " << 4 + qts_faces << " " << 5 + qts_faces << " " << 6 + qts_faces << " " << 7 + qts_faces << " " << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][k][j].b << " " << v[i][j][k].a << std::endl;
+                        fout << 4 << " " << 0 + qts_faces << " " << 1 + qts_faces << " " << 5 + qts_faces << " " << 4 + qts_faces << " " << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][k][j].b << " " << v[i][j][k].a << std::endl;
+                        fout << 4 << " " << 0 + qts_faces << " " << 4 + qts_faces << " " << 7 + qts_faces << " " << 3 + qts_faces << " " << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][k][j].b << " " << v[i][j][k].a << std::endl;
+                        fout << 4 << " " << 3 + qts_faces << " " << 7 + qts_faces << " " << 6 + qts_faces << " " << 2 + qts_faces << " " << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][k][j].b << " " << v[i][j][k].a << std::endl;
+                        fout << 4 << " " << 1 + qts_faces << " " << 2 + qts_faces << " " << 6 + qts_faces << " " << 5 + qts_faces << " " << v[i][j][k].r << " " << v[i][j][k].g << " " << v[i][k][j].b << " " << v[i][j][k].a << std::endl;
 
                         qts_faces = qts_faces + 8;
                     }
@@ -204,10 +203,10 @@ void Sculptor::writeOFF(cost char* filename)
             }
         }
 
-        std::cout << filename << " EXPORTADO" << std::endl;
+        //std::cout << filename << " EXPORTADO" << std::endl;
 
-        offout.close();
+        fout.close();
 
-    }
+    //}
 
 }
