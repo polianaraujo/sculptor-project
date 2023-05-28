@@ -48,7 +48,7 @@ public:
   // Ativa todos os voxel que satisfazem à equação da esfera
   // e atribui aos mesmos a cor atual de desenho (r,g,b,a)
  
-  //void cutSphere(int xcenter, int ycenter, int zcenter, int radius);
+  void cutSphere(int xcenter, int ycenter, int zcenter, int radius);
   // Desativa todos os voxels que satisfazem à equação da esfera
  
   void putEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int ry, int rz);
