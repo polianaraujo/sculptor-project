@@ -70,9 +70,9 @@ void Sculptor::putVoxel(int x, int y, int z)
 
 void Sculptor::cutVoxel(int x, int y, int z)
 {
-    //if ((x>=0 && x<nx) && (y>=0 && y<ny) && (z>=0 && z<nz)){
+    if ((x>=0 && x<nx) && (y>=0 && y<ny) && (z>=0 && z<nz)){
         v[x][y][z].show = false;
-    //}
+    }
 }
 
 void Sculptor::putBox(int x0, int x1, int y0, int y1, int z0, int z1)
