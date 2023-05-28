@@ -103,7 +103,7 @@ void Sculptor::cutBox(int x0, int x1, int y0, int y1, int z0, int z1)
         }
     }
 }
-/*
+
 void Sculptor::putSphere(int xcenter, int ycenter, int zcenter, int radius)
 {
     float x0 = (xcenter - radius);
@@ -149,7 +149,7 @@ void Sculptor::cutSphere(int xcenter, int ycenter, int zcenter, int radius)
         }
     }
 }
-*/
+
 void Sculptor::putEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int ry, int rz)
 {
     float x0 = (xcenter - rx);
