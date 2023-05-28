@@ -41,10 +41,10 @@ Sculptor::~Sculptor()
 
 void Sculptor::setColor(float r, float g, float b, float a)
 {
-    this->r = r * 255;
-    this->g = g * 255;
-    this->b = b * 255;
-    this->a = a * 255;
+    this->r = r*255;
+    this->g = g*255;
+    this->b = b*255;
+    this->a = a*255;
 }
 
 void Sculptor::putVoxel(int x, int y, int z)
@@ -140,6 +140,7 @@ void Sculptor::writeOFF(const char* filename)
         fout << qts_voxels*6 << " "; //número de faces (qts_voxels*6)
         fout << 0 << std::endl;      //número de arestas (não é necessário)
 
+        //fout << std::fixed;
         
         // COORDENADAS DOS VÉRTICES
 
