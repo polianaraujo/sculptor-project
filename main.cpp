@@ -4,13 +4,17 @@
 int main(void){
     Sculptor trono(30,30,30);
     trono.setColor(0,0,1.0,1.0); //azul
-    trono.putBox(0,9,0,9,0,9);
-    trono.cutBox(1,8,1,9,1,9);
+    trono.putBox(0,29,0,29,0,29);
+    trono.cutBox(1,28,1,29,1,29);
     
-    //putSphere(int xcenter, int ycenter, int zcenter, int radius);
-    trono.setColor(0,1.0,0,1.0); //verde
-    trono.putSphere(11,10,0,8);
-    //trono.cutSphere(11,-10,0,6);
+    //trono.setColor(0,1.0,0,1.0); //verde
+    //trono.putSphere(15,15,15,15);
+    //trono.cutSphere(15,15,15,14);
+
+    //void putEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int ry, int rz);
+    trono.setColor(1.0,0,0,1.0); //vermelho
+    trono.putEllipsoid(15,15,15, 15, 9, 5);
+    trono.cutEllipsoid(15,15,15, 14, 8, 4);
     
     trono.writeOFF("trono.off");
 }
