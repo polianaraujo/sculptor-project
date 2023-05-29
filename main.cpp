@@ -21,25 +21,17 @@ int main(void){
     
     //PORCO
     
-    //olhos
-    trono.setColor(0.0,0.0,0.0,1.0); //preto
-    
-    trono.putSphere(87,43,60,2); //olho esquerdo
-    trono.putSphere(87,57,60,2); //olho direito
-
-    trono.setColor(1.0,0.86,1.0,1.0); //rosa claro [255][203][219]
+    trono.setColor(0.8,0.3,0.3,1.0); //rosa claro
 
     //orelhas
-    trono.putSphere(81,43,64,5); //orelho esquerda
+    trono.putSphere(81,43,64,5); //orelha esquerda
     trono.cutSphere(83,42,64,3);
 
-    trono.putSphere(81,58,64,5); //orelha direita
-    trono.cutSphere(83,60,64,5);
+    trono.putSphere(81,57,64,5); //orelha direita
+    trono.cutSphere(83,58,64,3);
 
 
     //cabeça
-    trono.setColor(0.8,0.3,0.3,1.0); //rosa claro [255][203][219]
-
     trono.putEllipsoid(75,50,55, 14, 18, 14);
     trono.cutEllipsoid(75,50,55, 13, 17, 13);
     
@@ -69,6 +61,10 @@ int main(void){
     trono.putBox(60,65, 60,65, 5,10); // frente direita
     trono.putBox(30,35, 35,40, 5,10); // trás esquerda
     trono.putBox(30,35, 60,65, 5,10); // trás direita
+
+    //olhos
+    trono.putSphere(87,43,60,2); //olho esquerdo
+    trono.putSphere(87,57,60,2); //olho direito
 
     trono.writeOFF("pig.off");
 }
